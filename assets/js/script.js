@@ -4,6 +4,7 @@
  const inputBtn=document.getElementById("input-btn")
  const ulEl=document.getElementById("ulEl")
  const deleteBtn=document.getElementById("delete-btn")
+const tabBtn = document.getElementById("tab-btn")
 
  const leadsFromLocalStorage= JSON.parse(localStorage.getItem("myLeads"))
  console.log( leadsFromLocalStorage)
@@ -28,8 +29,8 @@ function renderlead()
 
 }
 
-   deleteBtn.addEventListener("dblclick",function(){
-   console.log("double clicked ")
+   deleteBtn.addEventListener("click",function(){
+   console.log(" clicked ")
    localStorage.clear()
       myLeads=[]
       renderlead()
@@ -49,6 +50,50 @@ inputBtn.addEventListener("click",function(){
  // to verify that it works
   console.log ( localStorage.getItem("myleads"))
  })
+
+
+
+
+
+tabBtn.addEventListener("click", function() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        renderlead()
+    })
+})
+inputEl.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // stop default form submit
+
+        myLeads.push(inputEl.value);
+        localStorage.setItem("myLeads", JSON.stringify(myLeads));
+        renderlead();
+        inputEl.value = ""; // clear input
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Tab") {
+        event.preventDefault();  // stop focus change
+
+        // Run your SAVE TAB logic
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            const url = tabs[0].url;
+            const title = tabs[0].title;
+
+            myLeads.push({
+                url: url,
+                name: title,
+                desc: "Added using TAB key"
+            });
+
+            localStorage.setItem("myLeads", JSON.stringify(myLeads));
+            renderlead();
+        });
+    }
+});
+
 
 //render lead type1
 

@@ -1,95 +1,154 @@
-/* Global Layout */
-body { 
+/* ============================
+   RESET + BASE LAYOUT
+============================ */
+* {
     margin: 0;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    min-width: 400px;
-    background: #f7f9f5;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Input Box */
+body { 
+    font-family: "Inter", Arial, sans-serif;
+    min-width: 420px;
+
+    /* LAYERED GLASS BACKGROUND */
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.06)),
+                url('https://grainy-gradients.vercel.app/noise.svg'),
+                radial-gradient(circle at top left,#9ef7c9,#c0e8ff);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    padding: 24px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   MAIN CONTAINER
+============================ */
+.container {
+    padding: 28px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.18),
+        inset 0 0 20px rgba(255,255,255,0.2);
+
+    animation: floatUp 0.7s ease;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================
+   INPUT FIELD
+============================ */
 input {
     width: 100%;
-    padding: 12px 14px;
-    box-sizing: border-box;
-    border: 2px solid #5f9341;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    height: 45px;
-    outline: none;
-    font-size: 16px;
-    transition: 0.2s ease-in-out;
-}
-
-/* Input Focus Effect */
-input:focus {
-    border-color: #3f6f2e;
-    box-shadow: 0 0 8px rgba(95, 147, 65, 0.4);
-}
-
-/* Save Button */
-#input-btn {
-    background-color: #5f9341;
-    color: white;
-    padding: 12px 20px;
+    padding: 14px;
     border: none;
-    font-weight: bold;
-    border-radius: 10px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(12px);
+
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid rgba(0, 255, 170, 0.7);
+    background: rgba(255,255,255,0.45);
+    transform: scale(1.01);
+}
+
+/* ============================
+   BUTTONS (PREMIUM LEVEL)
+============================ */
+button {
+    padding: 12px 22px;
+    border-radius: 12px;
+    border: none;
     cursor: pointer;
-    transition: 0.2s;
+    font-weight: 600;
+    font-size: 15px;
+
+    transition: all 0.25s ease;
+    letter-spacing: 0.3px;
+}
+
+/* Main Save Button */
+#input-btn {
+    color: white;
+    background: linear-gradient(135deg, #38c96d, #2c904c);
+    box-shadow: 0 4px 12px rgba(56, 201, 109, 0.4);
 }
 
 #input-btn:hover {
-    background-color: #4c7a35;
-    transform: scale(1.03);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(56, 201, 109, 0.55);
 }
 
-/* Delete Button */
-#delete-btn {
-    background-color: #ffffff;
-    color: #5f9341;
-    padding: 12px 20px;
-    border: 2px solid #5f9341;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: 0.2s;
+/* Outline Buttons */
+#tab-btn, #delete-btn {
+    background: rgba(255,255,255,0.35);
+    border: 1.5px solid rgba(0, 160, 90, 0.55);
+    color: #1b7d43;
 }
 
-#delete-btn:hover {
-    background-color: #e3f6de;
-    transform: scale(1.03);
+#tab-btn:hover, #delete-btn:hover {
+    background: rgba(255,255,255,0.55);
+    transform: translateY(-2px);
 }
 
-/* List Styling */
+/* ============================
+   LIST STYLING
+============================ */
 ul {
     list-style: none;
-    margin-top: 20px;
-    padding-left: 0;
+    margin-top: 25px;
 }
 
-/* List Items */
 li {
-    margin-top: 10px;
-    background: white;
-    padding: 12px 14px;
+    margin-bottom: 12px;
+    padding: 10px;
     border-radius: 10px;
-    border-left: 4px solid #5f9341;
-    font-size: 16px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    transition: 0.2s;
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+
+    transition: all 0.25s ease;
 }
 
-/* Hover Effect */
 li:hover {
-    transform: translateX(5px);
-    background: #f1faef;
+    background: rgba(255,255,255,0.45);
+    transform: translateX(6px);
 }
 
-/* Links inside list */
 li a {
-    color: #5f9341;
+    color: #2b8f4d;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 15px;
+}
+
+li a:hover {
+    text-decoration: underline;
 }
