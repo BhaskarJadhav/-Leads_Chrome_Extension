@@ -1,6 +1,6 @@
-/* ============================
-   RESET + BASE LAYOUT
-============================ */
+/* ==========================================
+   GLOBAL RESET + BASE LAYOUT
+========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -11,41 +11,43 @@ body {
     font-family: "Inter", Arial, sans-serif;
     min-width: 420px;
 
-    /* LAYERED GLASS BACKGROUND */
-    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.06)),
-                url('https://grainy-gradients.vercel.app/noise.svg'),
-                radial-gradient(circle at top left,#9ef7c9,#c0e8ff);
+    /* PREMIUM MULTI-LAYER GLASS BG */
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.10)),
+        url("https://grainy-gradients.vercel.app/noise.svg"),
+        radial-gradient(circle at top left, #99ffd9, #aee0ff 45%, #d7e9ff);
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-
-    padding: 24px;
-    animation: fadeIn 0.5s ease;
-}
-
-/* Fade animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================
-   MAIN CONTAINER
-============================ */
-.container {
-    padding: 28px;
-    border-radius: 18px;
-
-    background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
 
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.18),
-        inset 0 0 20px rgba(255,255,255,0.2);
+    padding: 28px;
+    animation: fadeIn 0.45s ease;
+    color: #1c1c1c;
+}
 
-    animation: floatUp 0.7s ease;
+/* Fade Entrance */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+.container {
+    padding: 28px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    box-shadow:
+        0 10px 32px rgba(0, 0, 0, 0.18),
+        inset 0 0 25px rgba(255,255,255,0.15);
+
+    animation: floatUp 0.6s ease;
 }
 
 @keyframes floatUp {
@@ -53,101 +55,105 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* ============================
+/* ==========================================
    INPUT FIELD
-============================ */
+========================================== */
 input {
     width: 100%;
     padding: 14px;
-    border: none;
     margin-bottom: 18px;
-    border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.30);
+    border: none;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(12px);
 
-    font-size: 16px;
-    color: #1a1a1a;
+    font-size: 15px;
     font-weight: 500;
-    transition: all 0.25s ease;
+    color: #0f0f0f;
+
+    transition: 0.25s ease;
 }
 
 input:focus {
     outline: none;
-    border: 2px solid rgba(0, 255, 170, 0.7);
-    background: rgba(255,255,255,0.45);
-    transform: scale(1.01);
+    background: rgba(255,255,255,0.55);
+    border: 2px solid rgba(0, 255, 180, 0.8);
+    transform: scale(1.02);
 }
 
-/* ============================
-   BUTTONS (PREMIUM LEVEL)
-============================ */
+/* ==========================================
+   BUTTONS
+========================================== */
 button {
     padding: 12px 22px;
     border-radius: 12px;
     border: none;
     cursor: pointer;
+
     font-weight: 600;
     font-size: 15px;
+    letter-spacing: 0.2px;
 
-    transition: all 0.25s ease;
-    letter-spacing: 0.3px;
+    transition: 0.25s ease;
 }
 
-/* Main Save Button */
+/* Primary Action Button */
 #input-btn {
     color: white;
-    background: linear-gradient(135deg, #38c96d, #2c904c);
-    box-shadow: 0 4px 12px rgba(56, 201, 109, 0.4);
+    background: linear-gradient(135deg, #1be77c, #0fa85a);
+    box-shadow: 0 4px 14px rgba(23, 209, 110, 0.45);
 }
 
 #input-btn:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 6px 16px rgba(56, 201, 109, 0.55);
+    box-shadow: 0 6px 18px rgba(23, 209, 110, 0.55);
 }
 
-/* Outline Buttons */
-#tab-btn, #delete-btn {
-    background: rgba(255,255,255,0.35);
-    border: 1.5px solid rgba(0, 160, 90, 0.55);
-    color: #1b7d43;
+/* Outline / Secondary Buttons */
+#tab-btn,
+#delete-btn {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1.5px solid rgba(17, 150, 95, 0.6);
+    color: #137a4a;
 }
 
-#tab-btn:hover, #delete-btn:hover {
+#tab-btn:hover,
+#delete-btn:hover {
     background: rgba(255,255,255,0.55);
     transform: translateY(-2px);
 }
 
-/* ============================
-   LIST STYLING
-============================ */
+/* ==========================================
+   LIST DESIGN
+========================================== */
 ul {
     list-style: none;
     margin-top: 25px;
 }
 
 li {
+    padding: 12px;
     margin-bottom: 12px;
-    padding: 10px;
-    border-radius: 10px;
 
-    background: rgba(255,255,255,0.25);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.30);
     backdrop-filter: blur(8px);
 
-    transition: all 0.25s ease;
+    transition: 0.25s ease;
 }
 
 li:hover {
-    background: rgba(255,255,255,0.45);
-    transform: translateX(6px);
+    background: rgba(255,255,255,0.50);
+    transform: translateX(8px);
 }
 
 li a {
-    color: #2b8f4d;
+    color: #2daf66;
     font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
-    font-size: 13px;
-    
 }
 
 li a:hover {
